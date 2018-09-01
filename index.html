@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Caesar Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script>
+    function doCaesar() {
+        var original = document.forms["myForm"]["fname"].value;
+        var original_length = original.length;
+        var i, j, z;
+        var AfterTrans = "";
+        for (i=0;i<26;i++) {
+            AfterTrans += "ROT" + i + "    "
+            for (j=0;j<original_length;j++) {
+                z = original[j].charCodeAt();
+                if (z >=65 && z<=90) {
+                    z += i;
+                    if (z > 90) {
+                        z -= 91;
+                        z += 65;
+                    }
+                } else if (z >=97 && z <= 122) {
+                    z += i;
+                    if (z > 122) {
+                        z -= 123;
+                        z += 97;
+                    }
+                }
+                AfterTrans += String.fromCharCode(z);
+            }
+            AfterTrans += "<br>";
+        }
+        document.getElementById('demo').innerHTML = AfterTrans;
+    }
+    </script>
+</head>
+<body>
+    <form name="myForm">
+        請輸入要轉換的字串 <input type="text" name="fname">
+        <input type="button" value="Trans" onclick="doCaesar()">
+     </form>    
+    <p id = "demo"></p>            
+</body>
+</html>
